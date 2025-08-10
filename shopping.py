@@ -37,7 +37,7 @@ def load_data(filename):
     for line in csv.reader(open(filename, "r")): 
         if line[0] == "Administrative":
             continue  # Skip header row
-        labels.append(int(line[17])) # change to int
+        labels.append(1 if line[17].strip().upper() == "TRUE" else 0) #label
         #loop over other data and add it to the evidence list as int or float
         evidence.append([
             int(line[0]), # Administrative
@@ -50,7 +50,7 @@ def load_data(filename):
             float(line[7]), # ExitRates
             float(line[8]), # PageValues
             float(line[9]), # SpecialDay
-            ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].index(line[10]), # Month
+            ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].index(line[10]), # Month
             int(line[11]), # OperatingSystems
             int(line[12]), # Browser
             int(line[13]), # Region
